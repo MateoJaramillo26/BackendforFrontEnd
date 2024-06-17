@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
+    <title>Flights</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .header-image {
+            height: 400px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .flight-card {
+            width: 300px;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <img class="mySlides header-image" src="mySlides/aeromexico.jpg" alt="Aeromexico">
+        <img class="mySlides header-image" src="mySlides/avion.jpg" alt="Avion">
+        <img class="mySlides header-image" src="mySlides/boeing.jpg" alt="Boeing">
+    </section>
+    <script>
+        var myIndex = 0;
+        carousel();
+        function carousel() {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            myIndex++;
+            if (myIndex > x.length) { myIndex = 1; }
+            x[myIndex - 1].style.display = "block";
+            setTimeout(carousel, 3000);
+        }
+    </script>
+    <section class="w3-container w3-center">
+        <h2 class="w3-wide">Booking Vuelos</h2>
+        <p class="w3-opacity"><i>Consigue los mejores vuelos a los mejores precios</i></p>
+    </section>
+    <section class="flex-container">
+        @foreach (var vuelo in Model)
+        {
+            <div class="flight-card">
+                <h3>@vuelo.airline</h3>
+                <p>Departure: @vuelo.departureTime.ToString("yyyy-MM-dd HH:mm")</p>
+                <p>Arrival: @vuelo.arrivalTime.ToString("yyyy-MM-dd HH:mm")</p>
+                <p>Class: @vuelo.AirLineClass</p>
+                <p>Price: $@vuelo.price</p>
+                <button class="w3-button w3-blue">Book Now</button>
+            </div>
+        }
+    </section>
+</body>
+</html>

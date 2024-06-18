@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿﻿
+@model List<Flight>
+
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -60,15 +63,15 @@
         <p class="w3-opacity"><i>Consigue los mejores vuelos a los mejores precios</i></p>
     </section>
     <section class="flex-container">
-        @foreach (var vuelo in Model)
+        @foreach (var flight in Model)
         {
             <div class="flight-card">
-                <h3>@vuelo.airline</h3>
-                <p>Departure: @vuelo.departureTime.ToString("yyyy-MM-dd HH:mm")</p>
-                <p>Arrival: @vuelo.arrivalTime.ToString("yyyy-MM-dd HH:mm")</p>
-                <p>Class: @vuelo.AirLineClass</p>
-                <p>Price: $@vuelo.price</p>
-                <button class="w3-button w3-blue">Book Now</button>
+                <h3>@flight.Airline</h3>
+                <p>ID: @flight.FlightID</p>
+                <p>Departure: @flight.DepartureTime.ToString("yyyy-MM-dd HH:mm")</p>
+                <p>Arrival: @flight.ArrivalTime.ToString("yyyy-MM-dd HH:mm")</p>
+                <p>Price: @flight.Price $</p>
+                <button class="w3-button w3-blue" onclick="">Book Now</button>
             </div>
         }
     </section>

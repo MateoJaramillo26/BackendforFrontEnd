@@ -7,9 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Views\htmlpage.html" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\mySlides\aeromexico.jpg" />
     <None Include="wwwroot\mySlides\avion.jpg" />
     <None Include="wwwroot\mySlides\boeing.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Refit" Version="7.0.0" />
+    <PackageReference Include="Refit.HttpClientFactory" Version="7.0.0" />
   </ItemGroup>
 
 </Project>

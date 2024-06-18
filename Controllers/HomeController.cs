@@ -1,21 +1,19 @@
 using BackendforFrontEnd.Models;
+using BackendforFrontEnd.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace BackendforFrontEnd.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController(ILogger<HomeController> logger, IBffService bffService) : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<HomeController> _logger = logger;
+        private readonly IBffService _bffService = bffService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public async Task<IActionResult> Index()
         {
-            _logger = logger;
-        }
-
-        public IActionResult Index()
-        {
-            return View();
+            var flights = await _bffService.GetFlightsAsync();
+            return View(flights);
         }
 
         public IActionResult Privacy()
@@ -28,5 +26,6 @@ namespace BackendforFrontEnd.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
     }
 }

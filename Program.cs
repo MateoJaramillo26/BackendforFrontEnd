@@ -1,7 +1,13 @@
+using BackendforFrontEnd.Services;
+using Refit;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services
+    .AddRefitClient<IBffService>()
+    .ConfigureHttpClient(c => c.BaseAddress = new Uri("http://localhost:5006/api/BFF/web"));
 
 var app = builder.Build();
 
@@ -14,6 +20,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
 app.UseStaticFiles();
 
 app.UseRouting();
